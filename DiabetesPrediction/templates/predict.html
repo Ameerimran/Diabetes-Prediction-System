@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{% static 'DiabetesPrediction/images/img2.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-direction: column;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin-right: 20px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .navbar img {
+            height: 50px;
+        }
+        .main {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 70px; /* Adjust margin to account for the fixed navbar */
+        }
+        table {
+            margin: 0 auto;
+        }
+        td {
+            padding: 10px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="{% static 'DiabetesPrediction/images/logo.png' %}" alt="Logo">
+        <a href="/about">About</a>
+    </div>
+    <div class="main">
+        <h1>Please enter the following information:</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form action="result" method="get">
+            <table>
+                <tr>
+                    <td align="right">Glucose</td>
+                    <td align="left"><input type="text" name="n1"></td>
+                </tr>
+                <tr>
+                    <td align="right">Blood Pressure</td>
+                    <td align="left"><input type="text" name="n2"></td>
+                </tr>
+                <tr>
+                    <td align="right">Skin Thickness</td>
+                    <td align="left"><input type="text" name="n3"></td>
+                </tr>
+                <tr>
+                    <td align="right">Insulin</td>
+                    <td align="left"><input type="text" name="n4"></td>
+                </tr>
+                <tr>
+                    <td align="right">BMI</td>
+                    <td align="left"><input type="text" name="n5"></td>
+                </tr>
+                <tr>
+                    <td align="right">Diabetes Pedigree Function</td>
+                    <td align="left"><input type="text" name="n6"></td>
+                </tr>
+                <tr>
+                    <td align="right">Age</td>
+                    <td align="left"><input type="text" name="n7"></td>
+                </tr>
+            </table>
+            <input type="submit" value="Predict">
+        </form>
+        {% if result2 %}
+            <p>Result: {{ result2 }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

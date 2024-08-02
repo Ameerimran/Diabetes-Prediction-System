@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Diabetes Prediction System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #50b3a2;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .navbar {
+            background: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .navbar img {
+            height: 50px;
+        }
+        .navbar a {
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+        }
+        .navbar a:hover {
+            background: #ddd;
+            color: black;
+        }
+        .navbar-right {
+            display: flex;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Diabetes Prediction System</h1>
+</header>
+
+<div class="navbar">
+    <a href="{% url 'home' %}">
+        <img src="{% static 'DiabetesPrediction/images/logo.png' %}" alt="Logo">
+    </a>
+    <div class="navbar-right">
+        <a href="#overview">Overview</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#benefits">Benefits</a>
+    </div>
+</div>
+
+<div class="container">
+    <section id="overview">
+        <h2>Overview</h2>
+        <p>Our Diabetes Prediction System leverages the power of machine learning to predict the likelihood of diabetes in patients. By utilizing advanced algorithms and a vast dataset of medical records, we aim to provide accurate and reliable predictions to assist healthcare professionals in early diagnosis and treatment planning.</p>
+    </section>
+
+    <section id="how-it-works">
+        <h2>How It Works</h2>
+        <p>The system employs a machine learning model based on the Random Forest algorithm. Random Forest is an ensemble learning method that operates by constructing multiple decision trees during training and outputting the class that is the mode of the classes of the individual trees.</p>
+        <h3>Steps:</h3>
+        <ol>
+            <li><strong>Data Collection:</strong> We gather a comprehensive dataset of patient records, including attributes such as age, BMI, blood pressure, insulin levels, and other relevant features.</li>
+            <li><strong>Data Preprocessing:</strong> The data is cleaned and preprocessed to handle missing values, normalize the attributes, and prepare it for training the model.</li>
+            <li><strong>Model Training:</strong> The Random Forest algorithm is used to train the model on the preprocessed dataset. The model learns to identify patterns and correlations between the attributes and the occurrence of diabetes.</li>
+            <li><strong>Prediction:</strong> Once trained, the model can predict the likelihood of diabetes for new patients based on their medical records.</li>
+        </ol>
+    </section>
+
+    <section id="benefits">
+        <h2>Benefits</h2>
+        <ul>
+            <li><strong>Early Detection:</strong> Helps in early detection of diabetes, allowing for timely intervention and treatment.</li>
+            <li><strong>Accuracy:</strong> The use of the Random Forest algorithm ensures high accuracy and reliability of predictions.</li>
+            <li><strong>Efficiency:</strong> Automates the prediction process, saving time for healthcare professionals.</li>
+            <li><strong>Data-Driven Insights:</strong> Provides valuable insights into the factors contributing to diabetes, aiding in better understanding and research.</li>
+        </ul>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Diabetes Prediction System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

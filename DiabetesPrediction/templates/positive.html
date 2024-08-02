@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'DiabetesPrediction/images/img3.jpeg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .result-container {
+            background-color: rgba(245, 228, 219, 0.9); /* Add transparency to see background */
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result-container h1 {
+            font-size: 48px;
+            color: #000000;
+        }
+        .result-container img {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+        }
+        .result-container p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #333333;
+        }
+        .result-container .back-button {
+            background-color: #7ed957;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>POSITIVE <img src="{% static 'DiabetesPrediction/images/img5.png' %}" alt="Warning Icon"></h1>
+        <p>Remember when you first found out you had diabetes and learned the basics of taking care of yourself?</p>
+        <p>Make and eat healthy food.<br>
+        Be active most days.<br>
+        Test your blood sugar often.<br>
+        Take medicines as prescribed, even if you feel good.<br>
+        Learn ways to manage stress.<br>
+        Cope with the emotional side of diabetes.<br>
+        Go to checkups.</p>
+        <a href="/predict" class="back-button">BACK</a>
+    </div>
+</body>
+</html>

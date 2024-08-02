@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{% static 'DiabetesPrediction/images/img2.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            flex-direction: column; /* Align items vertically */
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            margin-right: 20px; /* Add some margin to separate from the right edge */
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .navbar img {
+            height: 50px;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Optional: Add background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 70px; /* Adjust margin to account for the fixed navbar */
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="{% static 'DiabetesPrediction/images/logo.png' %}" alt="Logo">
+        <a href="{% url 'about' %}">About</a>
+    </div>
+    <div class="container">
+        <h1>WELCOME TO DIABETES PREDICTION SYSTEM</h1>
+        <form action="predict">
+            <input type="submit" value="Let's Get Started">
+        </form>
+    </div>
+</body>
+</html>

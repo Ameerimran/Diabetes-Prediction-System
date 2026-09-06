@@ -1,10 +1,12 @@
 from django.shortcuts import render
 import pandas as pd
+from pathlib import Path
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 
 # Load the dataset and train the model when the module is first imported
-diabetes_df = pd.read_csv(r'C:\Users\ameer\diabetes prediction system\diabetes.csv')
+dataset_path = Path(__file__).resolve().parents[2] / 'diabetes prediction system' / 'diabetes.csv'
+diabetes_df = pd.read_csv(dataset_path)
 
 # Drop the 'Outcome' column from the dataframe
 X = diabetes_df.drop(['Outcome'], axis=1)

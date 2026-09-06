@@ -12,7 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background-image: url("{% static 'DiabetesPrediction/images/img2.jpg' %}");
             background-size: cover;
             background-repeat: no-repeat;
@@ -46,11 +46,14 @@
         }
         .main {
             background-color: #fff;
-            padding: 20px;
+            padding: 28px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 70px; /* Adjust margin to account for the fixed navbar */
+            margin: 90px 16px 24px;
+            max-width: 720px;
+            width: calc(100% - 32px);
+            box-sizing: border-box;
         }
         table {
             margin: 0 auto;
@@ -65,6 +68,70 @@
             color: red;
             margin-bottom: 20px;
         }
+        .intro {
+            color: #555;
+            margin: -8px auto 20px;
+            max-width: 600px;
+        }
+        .guide {
+            background: #eef8f6;
+            border-left: 4px solid #50b3a2;
+            margin: 0 auto 22px;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        .guide ol {
+            margin: 8px 0 0;
+            padding-left: 20px;
+        }
+        .example {
+            background: #f7f7f7;
+            border: 1px solid #ddd;
+            margin: 0 auto 20px;
+            padding: 12px;
+            text-align: left;
+        }
+        .example button {
+            background: transparent;
+            border: 0;
+            color: #19766a;
+            cursor: pointer;
+            font-weight: bold;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 7px;
+        }
+        td:first-child {
+            width: 48%;
+        }
+        input[type="number"] {
+            box-sizing: border-box;
+            padding: 8px;
+            width: 150px;
+        }
+        input[type="submit"] {
+            cursor: pointer;
+            margin-top: 12px;
+            padding: 9px 22px;
+        }
+        @media (max-width: 560px) {
+            .main {
+                padding: 20px 12px;
+            }
+            td {
+                display: block;
+                padding: 5px;
+                text-align: left !important;
+                width: auto !important;
+            }
+            input[type="number"] {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -74,38 +141,53 @@
     </div>
     <div class="main">
         <h1>Please enter the following information:</h1>
+        <p class="intro">Enter readings from a recent health check-up. All values are required to generate a prediction.</p>
+        <div class="guide">
+            <strong>How to use this system</strong>
+            <ol>
+                <li>Refer to your medical report or healthcare provider for each reading.</li>
+                <li>Enter numbers only, using the units shown beside each field.</li>
+                <li>Click <strong>Predict</strong> to view the screening result.</li>
+            </ol>
+        </div>
+        <div class="example">
+            <strong>Example readings to try:</strong>
+            <button type="button" onclick="fillExample()">Use this example</button>
+            <br>
+            Glucose 120, Blood Pressure 70, Skin Thickness 20, Insulin 79, BMI 32.0, Diabetes Pedigree 0.47, Age 33
+        </div>
         {% if error %}
             <p class="error">{{ error }}</p>
         {% endif %}
         <form action="result" method="get">
             <table>
                 <tr>
-                    <td align="right">Glucose</td>
-                    <td align="left"><input type="text" name="n1"></td>
+                    <td align="right">Glucose (mg/dL)</td>
+                    <td align="left"><input type="number" name="n1" id="n1" step="any" min="0" required></td>
                 </tr>
                 <tr>
-                    <td align="right">Blood Pressure</td>
-                    <td align="left"><input type="text" name="n2"></td>
+                    <td align="right">Blood Pressure (mmHg)</td>
+                    <td align="left"><input type="number" name="n2" id="n2" step="any" min="0" required></td>
                 </tr>
                 <tr>
-                    <td align="right">Skin Thickness</td>
-                    <td align="left"><input type="text" name="n3"></td>
+                    <td align="right">Skin Thickness (mm)</td>
+                    <td align="left"><input type="number" name="n3" id="n3" step="any" min="0" required></td>
                 </tr>
                 <tr>
-                    <td align="right">Insulin</td>
-                    <td align="left"><input type="text" name="n4"></td>
+                    <td align="right">Insulin (mu U/mL)</td>
+                    <td align="left"><input type="number" name="n4" id="n4" step="any" min="0" required></td>
                 </tr>
                 <tr>
-                    <td align="right">BMI</td>
-                    <td align="left"><input type="text" name="n5"></td>
+                    <td align="right">BMI (kg/m²)</td>
+                    <td align="left"><input type="number" name="n5" id="n5" step="any" min="0" required></td>
                 </tr>
                 <tr>
                     <td align="right">Diabetes Pedigree Function</td>
-                    <td align="left"><input type="text" name="n6"></td>
+                    <td align="left"><input type="number" name="n6" id="n6" step="any" min="0" required></td>
                 </tr>
                 <tr>
-                    <td align="right">Age</td>
-                    <td align="left"><input type="text" name="n7"></td>
+                    <td align="right">Age (years)</td>
+                    <td align="left"><input type="number" name="n7" id="n7" step="1" min="1" required></td>
                 </tr>
             </table>
             <input type="submit" value="Predict">
@@ -113,6 +195,15 @@
         {% if result2 %}
             <p>Result: {{ result2 }}</p>
         {% endif %}
+        <p><small>This result is a model estimate, not a medical diagnosis. Please consult a healthcare professional.</small></p>
     </div>
+    <script>
+        function fillExample() {
+            const values = [120, 70, 20, 79, 32.0, 0.47, 33];
+            values.forEach(function (value, index) {
+                document.getElementById('n' + (index + 1)).value = value;
+            });
+        }
+    </script>
 </body>
 </html>
